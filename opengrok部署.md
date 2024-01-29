@@ -99,4 +99,18 @@ java \
 ```
 `/uctags-2024.01.24-linux-x86_64/bin/ctags`是ctags路径，`http://localhost:8080/opengrok`是tomcat应用服务地址。创建索引的过程时间可能比较久，和添加代码的量有关。
 
+为了加快创建索引，可以做进一步修改，关闭识别git等选项。
+```bash
+java \
+    -Djava.util.logging.config.file=/opengrok/etc/logging.properties \
+    -jar /opengrok/dist/lib/opengrok.jar \
+    -c /opengrok/uctags-2024.01.24-linux-x86_64/bin/ctags \
+    -s /opengrok/src -d /opengrok/data -P -S \
+    -W /opengrok/etc/configuration.xml -U http://localhost:8080/opengrok \
+    --ignoreHistoryCacheFailures \
+    --disableRepository git \
+    --historyBased off \
+    --progress
+```
+
 成功部署后，再次访问`http://localhost:8080/opengrok`便可以显示出opengrok界面。
