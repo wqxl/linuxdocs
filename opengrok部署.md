@@ -67,7 +67,7 @@ cd /apache-tomcat-10.1.18/bin
 当启动tomcat时，tomcat会自动检测war文件，然后解压war文件，并运行解压后war文件中的web文件。客户端可以通过`http://localhost:8080/opengrok`访问。
 
 **修改web文件**  
-tomcat会从web文件中解析`CONFIGURATION`参数的值，该参数的值是opengrok的configuration.xml文件路径。默认情况下是`/opengrok/etc/configuration.xml，需要根据实际情况修改。
+tomcat会从web文件中解析`CONFIGURATION`参数的值，该参数的值是opengrok的configuration.xml文件路径。默认情况下是`/opengrok/etc/configuration.xml`，需要根据实际情况修改。
 ```bash
     <display-name>OpenGrok</display-name>
     <description>A wicked fast source browser</description>
@@ -112,5 +112,7 @@ java \
     --historyBased off \
     --progress
 ```
+
+如果想要再添加源码或者删除源码时，只需要再次执行上面创建索引的命令即可，它会自动从`/opengrok/etc/configuration.xml`中添加或者删除相关源码信息。
 
 成功部署后，再次访问`http://localhost:8080/opengrok`便可以显示出opengrok界面。
